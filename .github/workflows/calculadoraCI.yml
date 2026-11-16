@@ -13,7 +13,7 @@ jobs:
                 distribution: 'temurin'
                 java-version: '25'
             - name: Executar os testes e gerar o pacote (.jar)
-              run: mvn test
+              run: mvn clean package
             - name: Disponibilizar o JAR como artefato
               uses: actions/upload-artifact@v4
               with:
