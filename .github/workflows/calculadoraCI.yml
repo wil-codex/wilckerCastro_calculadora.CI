@@ -1,1 +1,21 @@
-
+name: Calculadora CI
+on:
+    push:
+jobs:
+    testes:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+            - name: Configurar o Java
+              uses: actions/setup-java@v4
+              with:
+                distribution: 'temurin'
+                java-version: '25'
+            - name: Executar os testes e gerar o pacote (.jar)
+              run: mvn test
+            - name: Disponibilizar o JAR como artefato
+              uses: actions/upload-artifact@v4
+              with:
+                name: calculadoraCI-jar
+                path: target/*.jar
